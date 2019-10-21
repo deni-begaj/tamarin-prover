@@ -37,15 +37,15 @@ addons:
 
 before_install:
   # Download and unpack the stack executable
-  - mkdir -p ~/.local/bin
-  - export PATH=$HOME/.local/bin:$PATH
-  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-  - chmod a+x ~/.local/bin/stack
-  - stack --no-terminal setup
-  - travis_retry curl -L https://bintray.com/tamarin-prover-org/tamarin-prover/download_file?file_path=Maude-2.7.1-linux.zip > maude.zip
-  - unzip -o maude.zip -d ~/.local/bin/
-  - mv -f ~/.local/bin/maude.linux64 ~/.local/bin/maude
-  - chmod a+x ~/.local/bin/maude
+  # - mkdir -p ~/.local/bin
+  # - export PATH=$HOME/.local/bin:$PATH
+  # - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+  # - chmod a+x ~/.local/bin/stack
+  # - stack --no-terminal setup
+  # - travis_retry curl -L https://bintray.com/tamarin-prover-org/tamarin-prover/download_file?file_path=Maude-2.7.1-linux.zip > maude.zip
+  # - unzip -o maude.zip -d ~/.local/bin/
+  # - mv -f ~/.local/bin/maude.linux64 ~/.local/bin/maude
+  # - chmod a+x ~/.local/bin/maude
   # used for /manual build only
   - wget https://github.com/jgm/pandoc/releases/download/1.19.1/pandoc-1.19.1-1-amd64.deb
   - sudo dpkg -i pandoc-1.19.1-1-amd64.deb
