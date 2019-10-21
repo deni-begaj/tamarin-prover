@@ -30,6 +30,8 @@ git -C $CHECKOUT config user.email "$COMMIT_AUTHOR_EMAIL"
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy).
 git -C $CHECKOUT checkout $TARGET_BRANCH || git -C $CHECKOUT checkout --orphan $TARGET_BRANCH
 
+
+cd ./manual
 # Replace existing contents of checkout with the results of a fresh compile.
 rm -rf $CHECKOUT/* || exit 0
 doCompile
