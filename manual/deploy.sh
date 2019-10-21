@@ -63,8 +63,13 @@ chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
 
+echo "ARRIVES HERE"
+
+
 # Now that we're all set up, we can push.
 git -C $CHECKOUT push $SSH_REPO $TARGET_BRANCH
 
 # Clean up after ourselves.
 rm -rf $CHECKOUT
+
+echo "ARRIVES AT THE END OF deploy.sh"
