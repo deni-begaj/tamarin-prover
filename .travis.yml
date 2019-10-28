@@ -70,7 +70,7 @@ script:
 # ENCRYPTION_LABEL is used in the deploy script to identify which keys can push to the repo
 env:
   global:
-  - ENCRYPTION_LABEL: 894c8c9b843a
+  - ENCRYPTION_LABEL: 0c7581f4dd67
   - COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
 
 notifications:
