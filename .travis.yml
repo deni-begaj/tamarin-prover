@@ -1,0 +1,78 @@
+# Adapted from https://github.com/commercialhaskell/all-cabal-hashes-tool/blob/master/.travis.yml and https://raw.githubusercontent.com/commercialhaskell/stack/stable/doc/travis-simple.yml
+
+language: generic
+
+# used for /manual build only
+sudo: required
+dist: trusty
+
+env:
+  - OPAMYES=1
+
+cache:
+  directories:
+  - $HOME/.cabal
+  - $HOME/.ghc
+  - $HOME/.local/bin/
+  - $HOME/.stack
+  - .stack-work/
+  
+addons:
+  apt:
+    sources:
+      - avsm
+    packages:
+    - camlp4-extra
+    - graphviz
+    - libgmp-dev
+    - ocaml
+    - ocaml-native-compilers
+    - opam
+    # used for /manual build only
+    - texlive-xetex
+    - texlive-latex-extra
+    - texlive-fonts-recommended
+    - latex-xcolor
+    - lmodern
+
+before_install:
+  # Download and unpack the stack executable
+  # - mkdir -p ~/.local/bin
+  # - export PATH=$HOME/.local/bin:$PATH
+  # - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+  # - chmod a+x ~/.local/bin/stack
+  # - stack --no-terminal setup
+  # - travis_retry curl -L https://bintray.com/tamarin-prover-org/tamarin-prover/download_file?file_path=Maude-2.7.1-linux.zip > maude.zip
+  # - unzip -o maude.zip -d ~/.local/bin/
+  # - mv -f ~/.local/bin/maude.linux64 ~/.local/bin/maude
+  # - chmod a+x ~/.local/bin/maude
+  # used for /manual build only
+  - wget https://github.com/jgm/pandoc/releases/download/1.19.1/pandoc-1.19.1-1-amd64.deb
+  - sudo dpkg -i pandoc-1.19.1-1-amd64.deb
+
+# install:
+  # pre-build 'mwc-random' and 'SHA' as otherwise Travis CI sometimes runs out of memory
+  # - stack --no-terminal build mwc-random SHA -j 1
+  # - stack --no-terminal install
+
+  # SAPIC
+  # - opam init
+  # - eval `opam config env`
+  # - stack install
+  # - make -C plugins/sapic
+
+script:
+  # - tamarin-prover test
+  - bash ./manual/deploy.sh
+  # - make sapic-case-studies
+
+# used for /manual build only
+# ENCRYPTION_LABEL is used in the deploy script to identify which keys can push to the repo
+env:
+  global:
+  - ENCRYPTION_LABEL: 6fcf0ddd2a20
+  - COMMIT_AUTHOR_EMAIL: deploy@travis-ci.org
+
+notifications:
+  slack:
+    secure: Jbo4DleHEw22sDT4H4R0qY5yIkzho7u6uS0UKi9EYOe4o8ec8yrdkf3/VhyGdNvPHW+7I9RR6zFQ4j3iqJs5/TlT+Hfa4Duq9Epvr33SGuo/H8JXicly8QiWJunaTFz7t5kMttg/aUQcN8VAqwzkrUovB+gnHy9G6FmiKr1ejTQ=
